@@ -5,9 +5,62 @@
     xmlns:local="using:SimpleAnimation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image Source="ms-appx:///Assets/BackImg.jpg" Stretch="UniformToFill">
+            <interactivity:Interaction.Behaviors>
+                <!--"AutomaticallyStart = True" cannot trigger the animation automatically-->
+                <!--Temporary fix-->
+                <core:EventTriggerBehavior EventName="ImageOpened">
+                    <core:CallMethodAction TargetObject="{Binding ElementName=BlurBehavior}" MethodName="StartAnimation"/>
+                </core:EventTriggerBehavior>
+                <behaviors:Blur x:Name="BlurBehavior" 
+                                Value="10" 
+                                Duration="1000" 
+                                Delay="0" 
+                                AutomaticallyStart="True"/>
+            </interactivity:Interaction.Behaviors>
+        </Image>
 
+        <TextBlock 
+            Text="Welcome" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Style="{ThemeResource HeaderTextBlockStyle}"
+            Foreground="White"
+            Opacity="0">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Loaded">
+                    <core:CallMethodAction TargetObject="{Binding ElementName=FadeBehavior}" MethodName="StartAnimation"/>
+                    <core:CallMethodAction TargetObject="{Binding ElementName=FadeBehavior_2}" MethodName="StartAnimation"/>
+                    <core:CallMethodAction TargetObject="{Binding ElementName=Offset}" MethodName="StartAnimation"/>
+                </core:EventTriggerBehavior>
+                <behaviors:Fade x:Name="FadeBehavior"
+                                Value="1"
+                                Duration="500"
+                                Delay="1000" />
+                
+                <!--Problem with xaml intialization, setup in code-behind-->
+                <!--<behaviors:Offset x:Name="Offset"
+                                  OffsetX="0"
+                                  OffsetY="-100"
+                                  Duration="2000"
+                                  Delay="1500"/>-->
+                <behaviors:Offset x:Name="Offset"/>
+            </interactivity:Interaction.Behaviors>
+        </TextBlock>
+
+        <Button Content="Get Started" FontSize="16" Padding="12,8" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Fade x:Name="FadeBehavior_2"
+                                Value="1"
+                                Duration="500"
+                                Delay="3500"/>
+            </interactivity:Interaction.Behaviors>
+        </Button>
     </Grid>
 </Page>

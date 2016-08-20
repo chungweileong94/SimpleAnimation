@@ -25,6 +25,11 @@ namespace SimpleAnimation
         public MainPage()
         {
             this.InitializeComponent();
+
+            //temporary fix fo offset intialization
+            Offset.OffsetY = -100;
+            Offset.Duration = 2000;
+            Offset.Delay = 1500;
         }
     }
 }
