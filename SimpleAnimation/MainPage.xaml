@@ -13,11 +13,6 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Image Source="ms-appx:///Assets/BackImg.jpg" Stretch="UniformToFill">
             <interactivity:Interaction.Behaviors>
-                <!--"AutomaticallyStart = True" cannot trigger the animation automatically-->
-                <!--Temporary fix-->
-                <core:EventTriggerBehavior EventName="ImageOpened">
-                    <core:CallMethodAction TargetObject="{Binding ElementName=BlurBehavior}" MethodName="StartAnimation"/>
-                </core:EventTriggerBehavior>
                 <behaviors:Blur x:Name="BlurBehavior" 
                                 Value="10" 
                                 Duration="1000" 
@@ -34,23 +29,18 @@
             Foreground="White"
             Opacity="0">
             <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="Loaded">
-                    <core:CallMethodAction TargetObject="{Binding ElementName=FadeBehavior}" MethodName="StartAnimation"/>
-                    <core:CallMethodAction TargetObject="{Binding ElementName=FadeBehavior_2}" MethodName="StartAnimation"/>
-                    <core:CallMethodAction TargetObject="{Binding ElementName=Offset}" MethodName="StartAnimation"/>
-                </core:EventTriggerBehavior>
                 <behaviors:Fade x:Name="FadeBehavior"
                                 Value="1"
                                 Duration="500"
-                                Delay="1000" />
+                                Delay="1000"
+                                AutomaticallyStart="True"/>
                 
-                <!--Problem with xaml intialization, setup in code-behind-->
-                <!--<behaviors:Offset x:Name="Offset"
+                <behaviors:Offset x:Name="Offset"
                                   OffsetX="0"
                                   OffsetY="-100"
                                   Duration="2000"
-                                  Delay="1500"/>-->
-                <behaviors:Offset x:Name="Offset"/>
+                                  Delay="1500"
+                                  AutomaticallyStart="True"/>
             </interactivity:Interaction.Behaviors>
         </TextBlock>
 
@@ -59,7 +49,8 @@
                 <behaviors:Fade x:Name="FadeBehavior_2"
                                 Value="1"
                                 Duration="500"
-                                Delay="3500"/>
+                                Delay="3500"
+                                AutomaticallyStart="True"/>
             </interactivity:Interaction.Behaviors>
         </Button>
     </Grid>

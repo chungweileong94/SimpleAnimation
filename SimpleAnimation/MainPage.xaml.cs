@@ -27,9 +27,9 @@ namespace SimpleAnimation
             this.InitializeComponent();
 
             //temporary fix fo offset intialization
-            Offset.OffsetY = -100;
-            Offset.Duration = 2000;
-            Offset.Delay = 1500;
+            //Offset.OffsetY = -100;
+            //Offset.Duration = 2000;
+            //Offset.Delay = 1500;
         }
     }
 }
