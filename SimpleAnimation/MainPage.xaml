@@ -44,7 +44,7 @@
             </interactivity:Interaction.Behaviors>
         </TextBlock>
 
-        <Button Content="Get Started" FontSize="16" Padding="12,8" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button x:Name="StartedButton" Content="Get Started" FontSize="16" Padding="12,8" Opacity="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <interactivity:Interaction.Behaviors>
                 <behaviors:Fade x:Name="FadeBehavior_2"
                                 Value="1"
